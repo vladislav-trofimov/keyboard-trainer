@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Field content verification</title>
+</head>
+<body>
+<div contenteditable="true" id="inputField"></div>
+<script>
+    const inputField = document.getElementById('inputField');
+    const referenceWord = 'Hallo';
+
+    inputField.addEventListener('input', () => {
+        const enteredText = inputField.innerText;
+        let l=enteredText.length;
+    
+        inputField.innerHTML = '';    
+
+        for (let i = 0; i < l; i++) {
+            let span = document.createElement('span');
+            span.className = referenceWord[i] === enteredText[i] ? 'green' : 'red';
+            span.innerText = enteredText[i];
+            inputField.appendChild(span);
+        }
+
+        const range = document.createRange();
+        range.selectNodeContents(inputField);
+        range.collapse(false);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+    });
+</script>
+<style>
+    .green {
+        color: green;
+    }
+    .red {
+        color: red;
+    }
+</style>
+</body>
+</html>
