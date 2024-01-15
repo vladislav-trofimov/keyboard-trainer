@@ -6,11 +6,13 @@
     <title>Field content verification</title>
 </head>
 <body>
-<div contenteditable="true" id="inputField"></div>
+    <div id="testWord"></div>
+    <div contenteditable="true" id="inputField" class="inp"></div>
 <script>
     const inputField = document.getElementById('inputField');
     const referenceWord = 'Hallo';
-
+    document.getElementById('testWord').innerText = referenceWord;
+    
     inputField.addEventListener('input', () => {
         const enteredText = inputField.innerText;
         let l=enteredText.length;
@@ -38,6 +40,12 @@
     }
     .red {
         color: red;
+    }
+    .inp {
+        border: 1px solid black;
+        width: 200px;
+        height: 50px;
+        padding: 5px;
     }
 </style>
 </body>
